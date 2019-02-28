@@ -7,12 +7,15 @@
     "poisson-process": "^1.0.0"
   },
   "devDependencies": {
-    "flow-bin": "^0.93.0"
+    "flow-bin": "^0.93.0",
+    "flow-typed": "^2.5.1"
   },
   "scripts": {
     "test": "TODO",
     "flow": "flow",
-    "flow:check": "flow check ./src/"
+    "flow:check": "flow check ./src/",
+    "flow:build": "flow-remove-types ./src/ -d ./lib/ --all --pretty",
+    "flow:deps": "flow-typed install"
   },
   "author": "",
   "license": "ISC"
