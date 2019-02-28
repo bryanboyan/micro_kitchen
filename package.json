@@ -6,9 +6,13 @@
   "dependencies": {
     "poisson-process": "^1.0.0"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "flow-bin": "^0.93.0"
+  },
   "scripts": {
-    "test": "TODO"
+    "test": "TODO",
+    "flow": "flow",
+    "flow:check": "flow check ./src/"
   },
   "author": "",
   "license": "ISC"
