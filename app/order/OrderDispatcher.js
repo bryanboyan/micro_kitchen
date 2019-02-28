@@ -14,6 +14,7 @@ class OrderDispatcher {
     this.index = 0;
 
     this.process = poissonProcess.create(1000/POISSON_DISTRIBUTION_LAMBDA, () => {
+      this.cleanUpShelves();
       this.dispatchOneOrder();
     });
   }
@@ -26,10 +27,16 @@ class OrderDispatcher {
     this.process.stop();
   }
 
+  cleanUpShelves() {
+
+  }
+
   dispatchOneOrder() {
     // TODO Dispatch one order
     const currentIndex = this.index++;
     console.log(this.orders[currentIndex]);
+
+    // TODO put onto shelf
   }
 }
 
