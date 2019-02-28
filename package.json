@@ -1,0 +1,15 @@
+{
+  "name": "css_micro_kitchen",
+  "version": "0.0.1",
+  "description": "The food ordering and delivery system.",
+  "main": "index.js",
+  "dependencies": {
+    "poisson-process": "^1.0.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "TODO"
+  },
+  "author": "",
+  "license": "ISC"
+}
