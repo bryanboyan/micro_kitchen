@@ -2,7 +2,7 @@
   "name": "css_micro_kitchen",
   "version": "0.0.1",
   "description": "The food ordering and delivery system.",
-  "main": "index.js",
+  "main": "app.js",
   "dependencies": {
     "poisson-process": "^1.0.0"
   },
@@ -14,7 +14,7 @@
     "test": "TODO",
     "flow": "flow",
     "flow:check": "flow check ./src/",
-    "flow:build": "flow-remove-types ./src/ -d ./app/ --all --pretty",
+    "build": "flow-remove-types ./src/ -d ./app/ --all --pretty",
     "flow:deps": "flow-typed install"
   },
   "author": "",
