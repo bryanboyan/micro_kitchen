@@ -14,7 +14,7 @@
     "test": "TODO",
     "flow": "flow",
     "flow:check": "flow check ./src/",
-    "flow:build": "flow-remove-types ./src/ -d ./lib/ --all --pretty",
+    "flow:build": "flow-remove-types ./src/ -d ./app/ --all --pretty",
     "flow:deps": "flow-typed install"
   },
   "author": "",
