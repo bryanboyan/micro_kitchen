@@ -5,14 +5,13 @@ const poissonProcess = require('poisson-process');
 const POISSON_DISTRIBUTION_LAMBDA = 3.25;
 
 /**
- * Responsibility: Take orders from OrderReceiverDAO with simulated
- *  Poisson distribution in time.
+ * Responsibility: Take orders and simulate Poisson distribution to dispatch.
  */
-class OrderReceiver {
+class OrderDispatcher {
 
-
-  constructor() {
-    // TODO gets the fake latest order
+  constructor(orders) {
+    this.orders = orders;
+    this.index = 0;
 
     this.process = poissonProcess.create(1000/POISSON_DISTRIBUTION_LAMBDA, () => {
       this.dispatchOneOrder();
@@ -29,8 +28,9 @@ class OrderReceiver {
 
   dispatchOneOrder() {
     // TODO Dispatch one order
-    console.log('Order dispatched');
+    const currentIndex = this.index++;
+    console.log(this.orders[currentIndex]);
   }
 }
 
-module.exports = OrderReceiver;
+module.exports = OrderDispatcher;
