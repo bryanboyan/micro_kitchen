@@ -32,6 +32,10 @@ class BaseShelf {
     return order;
   }
 
+  getInventoryNumber() {
+    return this.orders.size;
+  }
+
   removeWastedOrders() {
     for (var [id, order] of this.orders) {
       if (order.getValue() <= 0) {
