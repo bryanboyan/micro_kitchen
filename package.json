@@ -9,10 +9,11 @@
   "devDependencies": {
     "flow-bin": "^0.93.0",
     "flow-typed": "^2.5.1",
+    "jest": "^24.1.0",
     "mocha": "^6.0.2"
   },
   "scripts": {
-    "test": "TODO",
+    "test": "jest",
     "flow": "flow",
     "flow:check": "flow check ./src/",
     "build": "flow-remove-types ./src/ -d ./app/ --all --pretty",

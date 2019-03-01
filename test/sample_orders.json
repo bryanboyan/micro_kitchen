@@ -1,0 +1,20 @@
+[
+  {
+    "name": "Food1",
+    "temp": "cold",
+    "shelfLife": 3,
+    "decayRate": 0.3
+  },
+  {
+    "name": "Food2",
+    "temp": "frozen",
+    "shelfLife": 10,
+    "decayRate": 0.37
+  },
+  {
+    "name": "Food3",
+    "temp": "hot",
+    "shelfLife": 1,
+    "decayRate": 0.6
+  }
+]
