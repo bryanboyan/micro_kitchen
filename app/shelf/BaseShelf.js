@@ -11,12 +11,13 @@ class BaseShelf {
   }
 
   putOrder(order) {
+    console.log(`put order into ${this.constructor.name}, current size: ${this.orders.size}`);
     if (this.orders.size == this.size) {
-      return false;
+      throw new Exception('Shelf full');
     }
 
     this.orders.set(order.id, order);
-    return true;
+    console.log(`>>>>>>> Order ${order.id} put`);
   }
 
   pickOrder(id) {
@@ -26,6 +27,7 @@ class BaseShelf {
 
     const order = this.orders.get(id);
     this.orders.delete(id);
+    console.log(`Order ${id} picked`);
 
     return order;
   }

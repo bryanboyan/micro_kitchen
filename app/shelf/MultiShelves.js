@@ -32,6 +32,25 @@ class OverflowShelf extends BaseShelf {
     const shelfSize = 20;
     super(shelfSize);
   }
+
+  tryPutOrder(order) {
+    try {
+      this.putOrder(order);
+      return true;
+    } catch (err) {
+      console.log('Dropping order due to overflow shelf full');
+      return false;
+    }
+  }
+
+  tryPickOrder(id) {
+    try {
+      return this.pickOrder(id);
+    } catch (err) {
+      console.log(`Not able to pick order ${id} from overflowShelf`);
+      return null;
+    }
+  }
 }
 
 module.exports = {

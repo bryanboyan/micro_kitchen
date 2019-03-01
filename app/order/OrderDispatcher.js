@@ -1,6 +1,7 @@
 'use strict';
 
 const poissonProcess = require('poisson-process');
+const Order = require('./Order');
 const ShelfOperator = require('../shelf/ShelfOperator');
 
 const POISSON_DISTRIBUTION_LAMBDA = 3.25;
@@ -18,25 +19,27 @@ class OrderDispatcher {
 
   handleOrder() {
     const orderID = this.index++;
-    const order = this.orders[orderID];
-    if (order == null) {
+    if (orderID >= this.orders.length) {
       this.postProcess();
       return;
     }
 
+    const order = new Order(orderID, this.orders[orderID]);
+
     // 1. Call driver first as it's time consuming
-    this.callDriver(orderID);
+    this.callDriver(order);
 
     // 2. Clean up shelves before putting orders
     ShelfOperator.cleanUpShelves();
 
     // 3. Put the order onto a shelf
-    ShelfOperator.putOrder(orderID, order);
+    ShelfOperator.putOrder(order);
   }
 
-  callDriver(orderID) {
-    const drivingTimeInSec = 3; // TODO random
-    setTimeout(() => ShelfOperator.pickOrder(orderID), drivingTimeInSec * 1000);
+  callDriver(order) {
+    // Random seconds between 2 ~ 10 seconds
+    const drivingTimeInSec = parseInt(Math.random() * 8 + 2, 10);
+    setTimeout(() => ShelfOperator.pickOrder(order), drivingTimeInSec * 1000);
   }
 
   startDispatching(postProcess) {
