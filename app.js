@@ -10,5 +10,9 @@ OrderDAO.readAll((err, orders) => {
   }
 
   const dispatcher = new OrderDispatcher(orders);
-  dispatcher.startDispatching();
+
+  dispatcher.startDispatching(() => {
+    dispatcher.stopDispatching();
+    console.log('Orders have been completed');
+  });
 });

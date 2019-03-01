@@ -6,7 +6,8 @@
  */
 class Order {
 
-  constructor(order) {
+  constructor(id, order) {
+    this.id = id;
     this.createdAt = Date.now();
     this.name = order.name;
     this.temp = order.temp;
@@ -14,7 +15,12 @@ class Order {
     this.decayRate = order.decayRate;
   }
 
-  getValue() {
+  get id() {
+    return this.id;
+  }
 
+  getValue() {
+    const orderAgeSec = parseInt((Date.now() - this.createdAt) / 1000, 10);
+    return this.shelfLife - orderAgeSec - this.decayRate * orderAgeSec;
   }
 }
