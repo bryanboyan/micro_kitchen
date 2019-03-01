@@ -1,7 +1,7 @@
 'use strict';
 
 const poissonProcess = require('poisson-process');
-const ShelfOperator = require('../shelves/ShelfOperator');
+const ShelfOperator = require('../shelf/ShelfOperator');
 
 const POISSON_DISTRIBUTION_LAMBDA = 3.25;
 
@@ -34,8 +34,9 @@ class OrderDispatcher {
     ShelfOperator.putOrder(orderID, order);
   }
 
-  callDriver(orderIndex) {
-    // TODO implement.
+  callDriver(orderID) {
+    const drivingTimeInSec = 3; // TODO random
+    setTimeout(() => ShelfOperator.pickOrder(orderID), drivingTimeInSec * 1000);
   }
 
   startDispatching(postProcess) {
