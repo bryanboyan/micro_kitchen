@@ -11,6 +11,11 @@ class TestShelf extends BaseShelf {
   }
 }
 
+test('BaseShelf size is 0', () => {
+  const baseShelf = new BaseShelf();
+  expect(baseShelf.getSize()).toEqual(0);
+});
+
 test('Be able to construct', () => {
   const testShelf = new TestShelf();
   expect(testShelf.getSize()).toEqual(SHELF_SIZE);

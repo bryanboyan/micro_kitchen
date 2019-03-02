@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1551555672815" clover="3.2.0">
-  <project timestamp="1551555672815" name="All files">
-    <metrics statements="86" coveredstatements="72" conditionals="12" coveredconditionals="10" methods="30" coveredmethods="22" elements="128" coveredelements="104" complexity="0" loc="86" ncloc="86" packages="2" files="5" classes="5"/>
+<coverage generated="1551555880347" clover="3.2.0">
+  <project timestamp="1551555880347" name="All files">
+    <metrics statements="86" coveredstatements="73" conditionals="12" coveredconditionals="10" methods="30" coveredmethods="23" elements="128" coveredelements="106" complexity="0" loc="86" ncloc="86" packages="2" files="5" classes="5"/>
     <package name="order">
       <metrics statements="30" coveredstatements="17" conditionals="2" coveredconditionals="0" methods="10" coveredmethods="3"/>
       <file name="Order.js" path="/Users/boyanlin/Projects/css_micro_kitchen/app/order/Order.js">
@@ -42,11 +42,11 @@
       </file>
     </package>
     <package name="shelf">
-      <metrics statements="56" coveredstatements="55" conditionals="10" coveredconditionals="10" methods="20" coveredmethods="19"/>
+      <metrics statements="56" coveredstatements="56" conditionals="10" coveredconditionals="10" methods="20" coveredmethods="20"/>
       <file name="BaseShelf.js" path="/Users/boyanlin/Projects/css_micro_kitchen/app/shelf/BaseShelf.js">
-        <metrics statements="19" coveredstatements="18" conditionals="6" coveredconditionals="6" methods="7" coveredmethods="6"/>
-        <line num="9" count="16" type="stmt"/>
-        <line num="13" count="0" type="stmt"/>
+        <metrics statements="19" coveredstatements="19" conditionals="6" coveredconditionals="6" methods="7" coveredmethods="7"/>
+        <line num="9" count="17" type="stmt"/>
+        <line num="13" count="1" type="stmt"/>
         <line num="17" count="77" type="cond" truecount="2" falsecount="0"/>
         <line num="18" count="25" type="stmt"/>
         <line num="21" count="52" type="stmt"/>
