@@ -37,9 +37,11 @@ class OrderDispatcher {
   }
 
   callDriver(order) {
-    // Random seconds between 2 ~ 10 seconds
-    const drivingTimeInSec = parseInt(Math.random() * 8 + 2, 10);
-    setTimeout(() => ShelfOperator.pickOrder(order), drivingTimeInSec * 1000);
+    setTimeout(() => ShelfOperator.pickOrder(order), this.getDriverDelay() * 1000);
+  }
+
+  getDriverDelay() {
+    return parseInt(Math.random() * 8 + 2, 10);
   }
 
   startDispatching(postProcess) {

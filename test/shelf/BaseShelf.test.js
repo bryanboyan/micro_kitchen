@@ -6,14 +6,14 @@ const orders = require('../sample_orders');
 
 const SHELF_SIZE = 10;
 class TestShelf extends BaseShelf {
-  constructor() {
-    super(SHELF_SIZE);
+  getSize() {
+    return SHELF_SIZE;
   }
 }
 
 test('Be able to construct', () => {
   const testShelf = new TestShelf();
-  expect(testShelf.size).toEqual(SHELF_SIZE);
+  expect(testShelf.getSize()).toEqual(SHELF_SIZE);
 });
 
 test('Be able to put order', () => {

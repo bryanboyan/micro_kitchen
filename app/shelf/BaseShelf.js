@@ -5,14 +5,16 @@
  */
 class BaseShelf {
 
-  constructor(size) {
-    this.size = size;
+  constructor() {
     this.orders = new Map();
   }
 
+  getSize() {
+    return 0;
+  }
+
   putOrder(order) {
-    console.log(`put order into ${this.constructor.name}, current size: ${this.orders.size}`);
-    if (this.orders.size == this.size) {
+    if (this.getInventoryNumber() == this.getSize()) {
       throw new Exception('Shelf full');
     }
 
@@ -43,6 +45,10 @@ class BaseShelf {
         this.orders.delete(id);
       }
     }
+  }
+
+  __removeOrders() {
+    this.orders = new Map();
   }
 }
 

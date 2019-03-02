@@ -4,33 +4,29 @@ const BaseShelf = require('./BaseShelf');
 
 class HotShelf extends BaseShelf {
 
-  constructor() {
-    const shelfSize = 15;
-    super(shelfSize);
+  getSize() {
+    return 15;
   }
 }
 
 class ColdShelf extends BaseShelf {
 
-  constructor() {
-    const shelfSize = 15;
-    super(shelfSize);
+  getSize() {
+    return 15;
   }
 }
 
 class FrozenShelf extends BaseShelf {
 
-  constructor() {
-    const shelfSize = 15;
-    super(shelfSize);
+  getSize() {
+    return 15;
   }
 }
 
 class OverflowShelf extends BaseShelf {
 
-  constructor() {
-    const shelfSize = 20;
-    super(shelfSize);
+  getSize() {
+    return 20;
   }
 
   tryPutOrder(order) {

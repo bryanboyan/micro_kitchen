@@ -39,10 +39,15 @@ class ShelfOperator {
   }
 
   static cleanUpShelves() {
-    hotShelf.removeWastedOrders();
-    coldShelf.removeWastedOrders();
-    frozenShelf.removeWastedOrders();
-    overflowShelf.removeWastedOrders();
+    [hotShelf, coldShelf, frozenShelf, overflowShelf]
+      .map(shelf => shelf.removeWastedOrders());
+  }
+
+  static getAllInventoryNumber() {
+    return [hotShelf, coldShelf, frozenShelf, overflowShelf].reduce(
+      (acc, cur) => acc + cur.getInventoryNumber(),
+      0,
+    );
   }
 }
 
