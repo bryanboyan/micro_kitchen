@@ -19,7 +19,6 @@ class BaseShelf {
     }
 
     this.orders.set(order.id, order);
-    console.log(`>>>>>>> Order ${order.id} put`);
   }
 
   pickOrder(id) {
@@ -29,7 +28,6 @@ class BaseShelf {
 
     const order = this.orders.get(id);
     this.orders.delete(id);
-    console.log(`Order ${id} picked`);
 
     return order;
   }

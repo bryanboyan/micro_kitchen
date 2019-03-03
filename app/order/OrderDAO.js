@@ -1,6 +1,5 @@
 'use strict';
 
-const __dirname = require('__dirname');
 const fs = require('fs');
 const path = require('path');
 

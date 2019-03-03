@@ -12,7 +12,7 @@ class ShelfOperator {
       shelf.putOrder(order);
       return true;
     } catch (err) {
-      console.error(`${shelf.constructor.name} full, put in overflow`);
+      console.info(`${shelf.constructor.name} full, put in overflow`);
       return overflowShelf.tryPutOrder(order);
     }
   }
@@ -24,7 +24,7 @@ class ShelfOperator {
     try {
       return shelf.pickOrder(order.id);
     } catch (err) {
-      console.error(`${shelf.constructor.name} pick failed, try overflow`);
+      console.info(`${shelf.constructor.name} pick failed, try overflow`);
       return overflowShelf.tryPickOrder(order);
     }
   }

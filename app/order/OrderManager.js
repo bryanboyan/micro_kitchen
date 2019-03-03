@@ -4,7 +4,7 @@ const ShelfOperator = require('../shelf/ShelfOperator');
 const Order = require('./Order');
 const poissonProcess = require('poisson-process');
 
-const POISSON_DISTRIBUTION_LAMBDA = 3.25;
+const POISSON_DISTRIBUTION_LAMBDA = 1000; // 3.25;
 
 /**
  * Responsibility: Take orders and simulate Poisson distribution to dispatch.
@@ -18,7 +18,6 @@ class OrderManager {
   }
 
   handleOrder() {
-    console.log('handleOrder');
     const orderID = this.index++;
     if (orderID >= this.orders.length) {
       'function' === typeof this.postProcess && this.postProcess();

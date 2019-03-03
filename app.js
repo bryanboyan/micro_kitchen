@@ -9,10 +9,13 @@ OrderDAO.readAll((err, orders) => {
     return;
   }
 
+  const start = Date.now();
+
   const manager = new OrderManager(orders);
 
   manager.startProcessing(() => {
     manager.stopProcessing();
-    console.log('Orders have been completed');
+    const end = Date.now();
+    console.log(`Orders have been completed in ${end-start} milliseconds`);
   });
 });
