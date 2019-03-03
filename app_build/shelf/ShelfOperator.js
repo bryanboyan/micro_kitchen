@@ -1,14 +1,10 @@
 'use strict';
 
-// @flow
-import type {Order} from '../order/Order';
-import type {BaseShelf} from './BaseShelf';
-
-import {coldShelf, frozenShelf, hotShelf, overflowShelf} from './MultiShelves';
+import { coldShelf, frozenShelf, hotShelf, overflowShelf } from './MultiShelves';
 
 export class ShelfOperator {
 
-  static putOrder(order: Order): boolean {
+  static putOrder(order) {
     ShelfOperator.cleanUpShelves();
 
     const shelf = ShelfOperator.mapShelf(order);
@@ -21,7 +17,7 @@ export class ShelfOperator {
     }
   }
 
-  static pickOrder(order: Order): ?Order {
+  static pickOrder(order) {
     ShelfOperator.cleanUpShelves();
 
     const shelf = ShelfOperator.mapShelf(order);
@@ -33,7 +29,7 @@ export class ShelfOperator {
     }
   }
 
-  static mapShelf(order: Order): BaseShelf {
+  static mapShelf(order) {
     switch (order.temp) {
       case 'hot':
         return hotShelf;
@@ -46,15 +42,11 @@ export class ShelfOperator {
     }
   }
 
-  static cleanUpShelves(): void {
-    [hotShelf, coldShelf, frozenShelf, overflowShelf]
-      .map(shelf => shelf.removeWastedOrders());
+  static cleanUpShelves() {
+    [hotShelf, coldShelf, frozenShelf, overflowShelf].map(shelf => shelf.removeWastedOrders());
   }
 
-  static getAllInventoryNumber(): number {
-    return [hotShelf, coldShelf, frozenShelf, overflowShelf].reduce(
-      (acc, cur) => acc + cur.getInventoryNumber(),
-      0,
-    );
+  static getAllInventoryNumber() {
+    return [hotShelf, coldShelf, frozenShelf, overflowShelf].reduce((acc, cur) => acc + cur.getInventoryNumber(), 0);
   }
 }

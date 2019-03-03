@@ -2,27 +2,33 @@
   "name": "css_micro_kitchen",
   "version": "0.0.1",
   "description": "The food ordering and delivery system.",
-  "main": "app.js",
+  "main": "index.js",
   "dependencies": {
+    "esm": "^3.2.9",
     "module-alias": "^2.2.0",
     "poisson-process": "^1.0.0"
   },
   "devDependencies": {
+    "@babel/core": "^7.3.4",
+    "@babel/preset-env": "^7.3.4",
+    "@babel/preset-flow": "^7.0.0",
+    "babel-cli": "^6.26.0",
+    "babel-jest": "^24.1.0",
+    "babel-plugin-transform-es2015-modules-commonjs": "^6.26.2",
+    "babel-preset-flow": "^6.23.0",
     "flow-bin": "^0.93.0",
     "flow-typed": "^2.5.1",
     "jest": "^24.1.0",
     "mocha": "^6.0.2"
   },
   "scripts": {
+    "start": "node index",
     "test": "jest",
+    "build": "./node_modules/.bin/babel --presets flow ./app/ -d ./app_build/",
     "flow": "flow",
-    "flow:check": "flow check ./src/",
-    "build": "flow-remove-types ./src/ -d ./app/ --all --pretty",
+    "flow:check": "flow check ./app_flow/",
     "flow:deps": "flow-typed install"
   },
-  "_moduleDirectories": {
-    "@app": "./app"
-  },
-  "author": "",
+  "author": "bryanlin",
   "license": "ISC"
 }

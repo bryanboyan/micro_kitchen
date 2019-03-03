@@ -1,7 +1,7 @@
 'use strict';
 
-const OrderDAO = require('./app/order/OrderDAO');
-const OrderManager = require('./app/order/OrderManager');
+import OrderDAO from './app/order/OrderDAO';
+import {OrderManager} from './app/order/OrderManager';
 
 OrderDAO.readAll((err, orders) => {
   if (err) {

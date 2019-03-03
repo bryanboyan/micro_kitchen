@@ -1,8 +1,8 @@
 'use strict';
 
-const Order = require('../../app/order/Order');
-const {coldShelf, frozenShelf, hotShelf, overflowShelf} = require('../../app/shelf/MultiShelves');
-const ShelfOperator = require('../../app/shelf/ShelfOperator');
+import {Order} from '../../app_build/order/Order';
+import {ShelfOperator} from '../../app_build/shelf/ShelfOperator';
+const {coldShelf, frozenShelf, hotShelf, overflowShelf} = require('../../app_build/shelf/MultiShelves');
 const ordersData = require('../sample_orders');
 
 const orders = ordersData.map((data, index) => new Order(index, data));

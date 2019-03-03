@@ -1,6 +1,5 @@
 'use strict';
 
-// @flow
 const fs = require('fs');
 const path = require('path');
 
@@ -14,7 +13,7 @@ class OrderDAO {
     // TODO Historical orders
   }
 
-  readAll(cb: (err: ?Error, data: string) => void) {
+  readAll(cb) {
     fs.readFile(path.join(__dirname, '../../assets/orders.json'), "utf8", (err, data) => {
       cb(err, JSON.parse(data));
     });

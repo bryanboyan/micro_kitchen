@@ -2,3 +2,4 @@ node_modules/
 debug/
 flow-typed/
 coverage/
+app_build/

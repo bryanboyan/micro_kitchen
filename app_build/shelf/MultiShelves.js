@@ -1,38 +1,35 @@
 'use strict';
 
-// @flow
-
-import type {Order} from '../order/Order';
-import {BaseShelf} from './BaseShelf';
+import { BaseShelf } from './BaseShelf';
 
 class HotShelf extends BaseShelf {
 
-  getSize(): number {
+  getSize() {
     return 15;
   }
 }
 
 class ColdShelf extends BaseShelf {
 
-  getSize(): number {
+  getSize() {
     return 15;
   }
 }
 
 class FrozenShelf extends BaseShelf {
 
-  getSize(): number {
+  getSize() {
     return 15;
   }
 }
 
 class OverflowShelf extends BaseShelf {
 
-  getSize(): number {
+  getSize() {
     return 20;
   }
 
-  tryPutOrder(order: Order): boolean {
+  tryPutOrder(order) {
     try {
       this.putOrder(order);
       return true;
@@ -42,7 +39,7 @@ class OverflowShelf extends BaseShelf {
     }
   }
 
-  tryPickOrder(id: number): ?Order {
+  tryPickOrder(id) {
     try {
       return this.pickOrder(id);
     } catch (err) {
@@ -57,4 +54,4 @@ const coldShelf = new ColdShelf();
 const frozenShelf = new FrozenShelf();
 const overflowShelf = new OverflowShelf();
 
-export {hotShelf, coldShelf, frozenShelf, overflowShelf};
+export { hotShelf, coldShelf, frozenShelf, overflowShelf };

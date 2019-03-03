@@ -1,24 +1,21 @@
 'use strict';
 
-// @flow
-
-import {Order} from '../order/Order';
+import { Order } from '../order/Order';
 
 /**
  * Base class of multitypes of shelf.
  */
 export class BaseShelf {
-  orders: Map<number, Order>;
 
   constructor() {
     this.orders = new Map();
   }
 
-  getSize(): number {
+  getSize() {
     return 0;
   }
 
-  putOrder(order: Order): void {
+  putOrder(order) {
     if (this.getInventoryNumber() == this.getSize()) {
       throw new Error('Shelf full');
     }
@@ -26,7 +23,7 @@ export class BaseShelf {
     this.orders.set(order.id, order);
   }
 
-  pickOrder(id: number): Order {
+  pickOrder(id) {
     if (!this.orders.has(id)) {
       throw new Error('Order ' + id + ' not available');
     }
@@ -40,11 +37,11 @@ export class BaseShelf {
     return order;
   }
 
-  getInventoryNumber(): number {
+  getInventoryNumber() {
     return this.orders.size;
   }
 
-  removeWastedOrders(): void {
+  removeWastedOrders() {
     for (var [id, order] of this.orders) {
       if (order.getValue() <= 0) {
         this.orders.delete(id);
@@ -52,7 +49,7 @@ export class BaseShelf {
     }
   }
 
-  __removeOrders(): void {
+  __removeOrders() {
     this.orders = new Map();
   }
 }

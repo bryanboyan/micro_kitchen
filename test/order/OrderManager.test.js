@@ -1,7 +1,7 @@
 'use strict';
 
-const Order = require('../../app/order/Order');
-const OrderManager = require('../../app/order/OrderManager');
+import {Order} from '../../app_build/order/Order';
+import {OrderManager} from '../../app_build/order/OrderManager';
 const ordersData = require('../sample_orders');
 
 beforeEach(() => {

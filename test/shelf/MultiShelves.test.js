@@ -1,7 +1,7 @@
 'use strict';
 
-const Order = require('../../app/order/Order');
-const {overflowShelf} = require('../../app/shelf/MultiShelves');
+import {Order} from '../../app_build/order/Order';
+import {overflowShelf} from '../../app_build/shelf/MultiShelves';
 const orders = require('../sample_orders');
 
 beforeEach(() => {
