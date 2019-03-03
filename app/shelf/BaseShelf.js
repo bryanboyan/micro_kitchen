@@ -2,6 +2,7 @@
 
 // @flow
 
+const nullthrows = require('nullthrows');
 import {Order} from '../order/Order';
 
 /**
@@ -31,10 +32,7 @@ export class BaseShelf {
       throw new Error('Order ' + id + ' not available');
     }
 
-    const order = this.orders.get(id);
-    if (!order) {
-      throw new Error('Order will be available');
-    }
+    const order = nullthrows(this.orders.get(id));
     this.orders.delete(id);
 
     return order;

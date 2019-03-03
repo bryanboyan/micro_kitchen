@@ -6,6 +6,7 @@
   "dependencies": {
     "esm": "^3.2.9",
     "module-alias": "^2.2.0",
+    "nullthrows": "^1.1.1",
     "poisson-process": "^1.0.0"
   },
   "devDependencies": {
@@ -23,11 +24,11 @@
   },
   "scripts": {
     "start": "node index",
-    "test": "jest",
+    "test": "./node_modules/.bin/jest",
+    "coverage": "./node_modules/.bin/jest --coverage",
     "build": "./node_modules/.bin/babel --presets flow ./app/ -d ./app_build/",
-    "flow": "flow",
-    "flow:check": "flow check ./app_flow/",
-    "flow:deps": "flow-typed install"
+    "flow": "./node_modules/.bin/flow",
+    "flow:check": "./node_modules/.bin/flow check ./app_flow/"
   },
   "author": "bryanlin",
   "license": "ISC"

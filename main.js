@@ -1,7 +1,7 @@
 'use strict';
 
-import OrderDAO from './app/order/OrderDAO';
-import {OrderManager} from './app/order/OrderManager';
+import OrderDAO from './app_build/order/OrderDAO';
+import {OrderManager} from './app_build/order/OrderManager';
 
 OrderDAO.readAll((err, orders) => {
   if (err) {
