@@ -25,6 +25,7 @@ export class BaseShelf {
     }
 
     this.orders.set(order.id, order);
+    order.putOnShelf(this);
   }
 
   pickOrder(id: number): Order {
@@ -33,7 +34,9 @@ export class BaseShelf {
     }
 
     const order = nullthrows(this.orders.get(id));
+    
     this.orders.delete(id);
+    order.removeFromShelf();
 
     return order;
   }

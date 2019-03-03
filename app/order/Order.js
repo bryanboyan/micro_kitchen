@@ -2,6 +2,8 @@
 
 // @flow
 
+import {BaseShelf} from '../shelf/BaseShelf';
+
 export type OrderTemp = 'hot' | 'cold' | 'frozen';
 export type OrderRawType = {
   name: string,
@@ -21,6 +23,7 @@ export class Order {
   temp: OrderTemp;
   shelfLife: number;
   decayRate: number;
+  shelf: ?BaseShelf;
 
   constructor(id: number, order: OrderRawType) {
     this.id = id;
@@ -29,6 +32,14 @@ export class Order {
     this.temp = order.temp;
     this.shelfLife = order.shelfLife;
     this.decayRate = order.decayRate;
+  }
+
+  putOnShelf(shelf: BaseShelf): void {
+    this.shelf = shelf;
+  }
+
+  removeFromShelf(): void {
+    this.shelf = null;
   }
 
   getValue(): number {

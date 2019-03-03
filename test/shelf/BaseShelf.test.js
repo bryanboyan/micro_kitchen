@@ -25,6 +25,7 @@ test('Be able to put order', () => {
   const order = new Order(1, orders[1]);
   const testShelf = new TestShelf();
   testShelf.putOrder(order);
+  expect(order.shelf).toEqual(testShelf);
 });
 
 test('Be able to pick order', () => {
@@ -32,9 +33,11 @@ test('Be able to pick order', () => {
   const order = new Order(orderID, orders[1]);
   const testShelf = new TestShelf();
   testShelf.putOrder(order);
+  expect(order.shelf).toEqual(testShelf);
 
   const pickedOrder = testShelf.pickOrder(orderID);
   expect(pickedOrder.id).toEqual(orderID);
+  expect(pickedOrder.shelf).toBeNull();
 });
 
 test('Be able to remove wasted orders', () => {
