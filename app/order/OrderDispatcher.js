@@ -18,9 +18,10 @@ class OrderDispatcher {
   }
 
   handleOrder() {
+    console.log('handleOrder');
     const orderID = this.index++;
     if (orderID >= this.orders.length) {
-      this.postProcess();
+      'function' === typeof this.postProcess && this.postProcess();
       return;
     }
 
