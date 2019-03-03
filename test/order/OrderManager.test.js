@@ -40,8 +40,8 @@ test('When order inqueue finished, it finishes without over dispatching', () => 
 test('Calling dispatching start will correctly call back', done => {
   const manager = new OrderManager(orders);
 
-  manager.startDispatching(() => {
-    manager.stopDispatching();
+  manager.startProcessing(() => {
+    manager.stopProcessing();
     expect(manager.index).toEqual(orders.length + 1);
     done();
   });

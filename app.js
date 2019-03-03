@@ -1,7 +1,7 @@
 'use strict';
 
 const OrderDAO = require('./app/order/OrderDAO');
-const OrderDispatcher = require('./app/order/OrderDispatcher');
+const OrderManager = require('./app/order/OrderManager');
 
 OrderDAO.readAll((err, orders) => {
   if (err) {
@@ -9,10 +9,10 @@ OrderDAO.readAll((err, orders) => {
     return;
   }
 
-  const dispatcher = new OrderDispatcher(orders);
+  const manager = new OrderManager(orders);
 
-  dispatcher.startDispatching(() => {
-    dispatcher.stopDispatching();
+  manager.startProcessing(() => {
+    manager.stopProcessing();
     console.log('Orders have been completed');
   });
 });

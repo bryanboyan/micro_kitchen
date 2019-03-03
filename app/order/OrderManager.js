@@ -45,12 +45,12 @@ class OrderManager {
     return parseInt(Math.random() * 8 + 2, 10);
   }
 
-  startDispatching(postProcess) {
+  startProcessing(postProcess) {
     this.postProcess = postProcess;
     this.process.start();
   }
 
-  stopDispatching() {
+  stopProcessing() {
     this.process.stop();
   }
 }
