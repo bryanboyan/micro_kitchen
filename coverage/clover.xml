@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1551579835887" clover="3.2.0">
-  <project timestamp="1551579835887" name="All files">
+<coverage generated="1551580301226" clover="3.2.0">
+  <project timestamp="1551580301226" name="All files">
     <metrics statements="87" coveredstatements="87" conditionals="14" coveredconditionals="14" methods="30" coveredmethods="30" elements="131" coveredelements="131" complexity="0" loc="87" ncloc="87" packages="2" files="5" classes="5"/>
     <package name="order">
       <metrics statements="31" coveredstatements="31" conditionals="4" coveredconditionals="4" methods="10" coveredmethods="10"/>
@@ -16,7 +16,7 @@
         <line num="20" count="30" type="stmt"/>
         <line num="24" count="5" type="stmt"/>
       </file>
-      <file name="OrderDispatcher.js" path="/Users/boyanlin/Projects/css_micro_kitchen/app/order/OrderDispatcher.js">
+      <file name="OrderManager.js" path="/Users/boyanlin/Projects/css_micro_kitchen/app/order/OrderManager.js">
         <metrics statements="22" coveredstatements="22" conditionals="4" coveredconditionals="4" methods="8" coveredmethods="8"/>
         <line num="3" count="1" type="stmt"/>
         <line num="4" count="1" type="stmt"/>
