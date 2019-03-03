@@ -1,7 +1,9 @@
 'use strict';
 
-const {overflowShelf} = require('../../app/shelf/MultiShelves');
+const Map = require('Map');
+
 const Order = require('../../app/order/Order');
+const {overflowShelf} = require('../../app/shelf/MultiShelves');
 const orders = require('../sample_orders');
 
 beforeEach(() => {

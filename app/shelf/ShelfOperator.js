@@ -1,10 +1,12 @@
 'use strict';
 
-const {hotShelf, coldShelf, frozenShelf, overflowShelf} = require('./MultiShelves');
+const {coldShelf, frozenShelf, hotShelf, overflowShelf} = require('./MultiShelves');
 
 class ShelfOperator {
 
   static putOrder(order) {
+    ShelfOperator.cleanUpShelves();
+
     const shelf = ShelfOperator.mapShelf(order);
     try {
       shelf.putOrder(order);
@@ -16,6 +18,8 @@ class ShelfOperator {
   }
 
   static pickOrder(order) {
+    ShelfOperator.cleanUpShelves();
+
     const shelf = ShelfOperator.mapShelf(order);
     try {
       return shelf.pickOrder(order.id);

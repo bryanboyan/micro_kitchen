@@ -1,7 +1,7 @@
 'use strict';
 
-const BaseShelf = require('../../app/shelf/BaseShelf');
 const Order = require('../../app/order/Order');
+const BaseShelf = require('../../app/shelf/BaseShelf');
 const orders = require('../sample_orders');
 
 const SHELF_SIZE = 10;

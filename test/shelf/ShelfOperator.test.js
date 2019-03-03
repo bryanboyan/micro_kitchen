@@ -1,9 +1,12 @@
 'use strict';
 
-const {hotShelf, coldShelf, frozenShelf, overflowShelf} = require('../../app/shelf/MultiShelves');
+const Map = require('Map');
+
 const Order = require('../../app/order/Order');
+const {coldShelf, frozenShelf, hotShelf, overflowShelf} = require('../../app/shelf/MultiShelves');
 const ShelfOperator = require('../../app/shelf/ShelfOperator');
 const ordersData = require('../sample_orders');
+
 const orders = ordersData.map((data, index) => new Order(index, data));
 
 beforeEach(() => {
@@ -66,27 +69,31 @@ test('Mapping from temp to shelf should be correct', () => {
   expect(() => ShelfOperator.mapShelf(order)).toThrow();
 });
 
-test('Removing wasted orders will get rid of wasted orders', () => {
-  const indexOffsite = orders.length;
-  const wastedOrders = ordersData.map((orderData, index) => {
-    let newOrderData = Object.assign({}, orderData, {shelfLife: -1});
+test('Removing wasted orders will get rid of wasted orders', done => {
+  const soonExpiredOrders = ordersData.map((orderData, index) => {
+    let newOrderData = Object.assign({}, orderData, {shelfLife: 1});
+    return new Order(index, newOrderData);
+  });
+  const indexOffsite = soonExpiredOrders.length;
+  const longEnoughOrders = ordersData.map((orderData, index) => {
+    let newOrderData = Object.assign({}, orderData, {shelfLife: 10000});
     return new Order(index+indexOffsite, newOrderData);
   });
 
-  // Put good orders
-  orders.map(order => {
-    expect(ShelfOperator.putOrder(order)).toBeTruthy();
-  });
-  // Put bad orders
-  wastedOrders.map(order => {
+  const allOrders = soonExpiredOrders.concat(longEnoughOrders);
+  // Put all orders
+  allOrders.map(order => {
     expect(ShelfOperator.putOrder(order)).toBeTruthy();
   });
 
   expect(ShelfOperator.getAllInventoryNumber())
-    .toEqual(orders.length + wastedOrders.length);
+    .toEqual(allOrders.length);
 
-  ShelfOperator.cleanUpShelves();
+  setTimeout(() => {
+    ShelfOperator.cleanUpShelves();
 
-  expect(ShelfOperator.getAllInventoryNumber())
-    .toEqual(orders.length);
+    expect(ShelfOperator.getAllInventoryNumber())
+      .toEqual(longEnoughOrders.length);
+    done();
+  }, 1500); // in 1.5 seconds (> the life of soonExpiredOrders)
 });

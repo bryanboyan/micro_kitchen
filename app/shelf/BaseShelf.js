@@ -1,5 +1,8 @@
 'use strict';
 
+const Exception = require('Exception');
+const Map = require('Map');
+
 /**
  * Base class of multitypes of shelf.
  */
@@ -41,7 +44,6 @@ class BaseShelf {
   removeWastedOrders() {
     for (var [id, order] of this.orders) {
       if (order.getValue() <= 0) {
-        console.log('removing '+id+order);
         this.orders.delete(id);
       }
     }

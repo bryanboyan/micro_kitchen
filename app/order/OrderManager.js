@@ -1,8 +1,8 @@
 'use strict';
 
-const poissonProcess = require('poisson-process');
-const Order = require('./Order');
 const ShelfOperator = require('../shelf/ShelfOperator');
+const Order = require('./Order');
+const poissonProcess = require('poisson-process');
 
 const POISSON_DISTRIBUTION_LAMBDA = 3.25;
 
@@ -30,10 +30,7 @@ class OrderManager {
     // 1. Call driver first as it's time consuming
     this.callDriver(order);
 
-    // 2. Clean up shelves before putting orders
-    ShelfOperator.cleanUpShelves();
-
-    // 3. Put the order onto a shelf
+    // 2. Put the order onto a shelf
     ShelfOperator.putOrder(order);
   }
 

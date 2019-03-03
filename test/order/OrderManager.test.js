@@ -1,9 +1,9 @@
 'use strict';
 
-
 const Order = require('../../app/order/Order');
 const OrderManager = require('../../app/order/OrderManager');
 const ordersData = require('../sample_orders');
+
 const orders = ordersData.map((order, index) => new Order(index, order));
 
 beforeEach(() => {
