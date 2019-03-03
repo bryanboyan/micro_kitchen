@@ -1,8 +1,5 @@
 'use strict';
 
-const Exception = require('Exception');
-const Map = require('Map');
-
 /**
  * Base class of multitypes of shelf.
  */

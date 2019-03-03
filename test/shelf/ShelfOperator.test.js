@@ -1,7 +1,5 @@
 'use strict';
 
-const Map = require('Map');
-
 const Order = require('../../app/order/Order');
 const {coldShelf, frozenShelf, hotShelf, overflowShelf} = require('../../app/shelf/MultiShelves');
 const ShelfOperator = require('../../app/shelf/ShelfOperator');
