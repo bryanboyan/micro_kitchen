@@ -14,18 +14,13 @@ class OrderManager {
   constructor(orders) {
     this.index = 0;
     this.orders = orders;
-    this.process = poissonProcess.create(1000/POISSON_DISTRIBUTION_LAMBDA, () => this.handleOrder());
+    this.process = this.setupProcess();
   }
 
-  handleOrder() {
-    const orderID = this.index++;
-    if (orderID >= this.orders.length) {
-      'function' === typeof this.postProcess && this.postProcess();
-      return;
-    }
-
-    const order = new Order(orderID, this.orders[orderID]);
-
+  /**
+   * Facade of handling an order
+   */
+  handleOrder(order) {
     // 1. Call driver first as it's time consuming
     this.callDriver(order);
 
@@ -39,6 +34,21 @@ class OrderManager {
 
   getDriverDelay() {
     return parseInt(Math.random() * 8 + 2, 10);
+  }
+
+  // In real world, this class will be switched and instead take incoming
+  // requests from the outside which might directly call into handleOrder()
+  setupProcess() {
+    return poissonProcess.create(1000/POISSON_DISTRIBUTION_LAMBDA, () => {
+      const orderID = this.index++;
+      console.log('orderID: ', orderID);
+      if (orderID >= this.orders.length) {
+        'function' === typeof this.postProcess && this.postProcess();
+        return;
+      }
+      const order = new Order(orderID, this.orders[orderID]);
+      this.handleOrder(order);
+    });
   }
 
   startProcessing(postProcess) {

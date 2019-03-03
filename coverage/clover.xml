@@ -1,113 +1,113 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1551580410824" clover="3.2.0">
-  <project timestamp="1551580410825" name="All files">
-    <metrics statements="87" coveredstatements="87" conditionals="14" coveredconditionals="14" methods="30" coveredmethods="30" elements="131" coveredelements="131" complexity="0" loc="87" ncloc="87" packages="2" files="5" classes="5"/>
+<coverage generated="1551641221312" clover="3.2.0">
+  <project timestamp="1551641221312" name="All files">
+    <metrics statements="87" coveredstatements="87" conditionals="14" coveredconditionals="14" methods="31" coveredmethods="31" elements="132" coveredelements="132" complexity="0" loc="87" ncloc="87" packages="2" files="5" classes="5"/>
     <package name="order">
-      <metrics statements="31" coveredstatements="31" conditionals="4" coveredconditionals="4" methods="10" coveredmethods="10"/>
+      <metrics statements="32" coveredstatements="32" conditionals="4" coveredconditionals="4" methods="11" coveredmethods="11"/>
       <file name="Order.js" path="/Users/boyanlin/Projects/css_micro_kitchen/app/order/Order.js">
         <metrics statements="9" coveredstatements="9" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
-        <line num="10" count="103" type="stmt"/>
-        <line num="11" count="103" type="stmt"/>
-        <line num="12" count="103" type="stmt"/>
-        <line num="13" count="103" type="stmt"/>
-        <line num="14" count="103" type="stmt"/>
-        <line num="15" count="103" type="stmt"/>
-        <line num="19" count="30" type="stmt"/>
-        <line num="20" count="30" type="stmt"/>
+        <line num="10" count="100" type="stmt"/>
+        <line num="11" count="100" type="stmt"/>
+        <line num="12" count="100" type="stmt"/>
+        <line num="13" count="100" type="stmt"/>
+        <line num="14" count="100" type="stmt"/>
+        <line num="15" count="100" type="stmt"/>
+        <line num="19" count="713" type="stmt"/>
+        <line num="20" count="713" type="stmt"/>
         <line num="24" count="5" type="stmt"/>
       </file>
       <file name="OrderManager.js" path="/Users/boyanlin/Projects/css_micro_kitchen/app/order/OrderManager.js">
-        <metrics statements="22" coveredstatements="22" conditionals="4" coveredconditionals="4" methods="8" coveredmethods="8"/>
+        <metrics statements="23" coveredstatements="23" conditionals="4" coveredconditionals="4" methods="9" coveredmethods="9"/>
         <line num="3" count="1" type="stmt"/>
         <line num="4" count="1" type="stmt"/>
         <line num="5" count="1" type="stmt"/>
         <line num="7" count="1" type="stmt"/>
-        <line num="15" count="4" type="stmt"/>
-        <line num="16" count="4" type="stmt"/>
-        <line num="17" count="4" type="stmt"/>
-        <line num="21" count="20" type="stmt"/>
-        <line num="22" count="20" type="stmt"/>
-        <line num="23" count="20" type="cond" truecount="2" falsecount="0"/>
-        <line num="24" count="11" type="cond" truecount="2" falsecount="0"/>
-        <line num="25" count="11" type="stmt"/>
-        <line num="28" count="9" type="stmt"/>
-        <line num="31" count="9" type="stmt"/>
-        <line num="34" count="9" type="stmt"/>
-        <line num="37" count="9" type="stmt"/>
-        <line num="41" count="9" type="stmt"/>
-        <line num="45" count="9" type="stmt"/>
-        <line num="49" count="1" type="stmt"/>
-        <line num="50" count="1" type="stmt"/>
+        <line num="15" count="3" type="stmt"/>
+        <line num="16" count="3" type="stmt"/>
+        <line num="17" count="3" type="stmt"/>
+        <line num="25" count="6" type="stmt"/>
+        <line num="28" count="6" type="stmt"/>
+        <line num="32" count="6" type="stmt"/>
+        <line num="36" count="6" type="stmt"/>
+        <line num="40" count="3" type="stmt"/>
+        <line num="41" count="4" type="stmt"/>
+        <line num="42" count="4" type="stmt"/>
+        <line num="43" count="4" type="cond" truecount="2" falsecount="0"/>
+        <line num="44" count="1" type="cond" truecount="2" falsecount="0"/>
+        <line num="45" count="1" type="stmt"/>
+        <line num="47" count="3" type="stmt"/>
+        <line num="48" count="3" type="stmt"/>
+        <line num="53" count="1" type="stmt"/>
         <line num="54" count="1" type="stmt"/>
         <line num="58" count="1" type="stmt"/>
+        <line num="62" count="1" type="stmt"/>
       </file>
     </package>
     <package name="shelf">
-      <metrics statements="56" coveredstatements="56" conditionals="10" coveredconditionals="10" methods="20" coveredmethods="20"/>
+      <metrics statements="55" coveredstatements="55" conditionals="10" coveredconditionals="10" methods="20" coveredmethods="20"/>
       <file name="BaseShelf.js" path="/Users/boyanlin/Projects/css_micro_kitchen/app/shelf/BaseShelf.js">
-        <metrics statements="19" coveredstatements="19" conditionals="6" coveredconditionals="6" methods="7" coveredmethods="7"/>
+        <metrics statements="16" coveredstatements="16" conditionals="6" coveredconditionals="6" methods="7" coveredmethods="7"/>
         <line num="9" count="17" type="stmt"/>
         <line num="13" count="1" type="stmt"/>
-        <line num="17" count="86" type="cond" truecount="2" falsecount="0"/>
+        <line num="17" count="83" type="cond" truecount="2" falsecount="0"/>
         <line num="18" count="25" type="stmt"/>
-        <line num="21" count="61" type="stmt"/>
-        <line num="22" count="61" type="stmt"/>
-        <line num="26" count="24" type="cond" truecount="2" falsecount="0"/>
-        <line num="27" count="17" type="stmt"/>
+        <line num="21" count="58" type="stmt"/>
+        <line num="25" count="18" type="cond" truecount="2" falsecount="0"/>
+        <line num="26" count="11" type="stmt"/>
+        <line num="29" count="7" type="stmt"/>
         <line num="30" count="7" type="stmt"/>
-        <line num="31" count="7" type="stmt"/>
         <line num="32" count="7" type="stmt"/>
-        <line num="34" count="7" type="stmt"/>
-        <line num="38" count="96" type="stmt"/>
-        <line num="42" count="41" type="stmt"/>
-        <line num="43" count="29" type="cond" truecount="2" falsecount="0"/>
-        <line num="44" count="4" type="stmt"/>
-        <line num="45" count="4" type="stmt"/>
-        <line num="51" count="24" type="stmt"/>
-        <line num="55" count="4" type="stmt"/>
+        <line num="36" count="93" type="stmt"/>
+        <line num="40" count="257" type="stmt"/>
+        <line num="41" count="712" type="cond" truecount="2" falsecount="0"/>
+        <line num="42" count="4" type="stmt"/>
+        <line num="48" count="24" type="stmt"/>
+        <line num="52" count="4" type="stmt"/>
       </file>
       <file name="MultiShelves.js" path="/Users/boyanlin/Projects/css_micro_kitchen/app/shelf/MultiShelves.js">
         <metrics statements="15" coveredstatements="15" conditionals="0" coveredconditionals="0" methods="6" coveredmethods="6"/>
         <line num="3" count="3" type="stmt"/>
-        <line num="8" count="43" type="stmt"/>
-        <line num="15" count="8" type="stmt"/>
-        <line num="22" count="6" type="stmt"/>
+        <line num="8" count="42" type="stmt"/>
+        <line num="15" count="7" type="stmt"/>
+        <line num="22" count="5" type="stmt"/>
         <line num="29" count="27" type="stmt"/>
         <line num="33" count="26" type="stmt"/>
         <line num="34" count="26" type="stmt"/>
         <line num="35" count="23" type="stmt"/>
         <line num="37" count="3" type="stmt"/>
         <line num="38" count="3" type="stmt"/>
-        <line num="43" count="10" type="stmt"/>
-        <line num="44" count="10" type="stmt"/>
-        <line num="46" count="9" type="stmt"/>
-        <line num="47" count="9" type="stmt"/>
+        <line num="43" count="7" type="stmt"/>
+        <line num="44" count="7" type="stmt"/>
+        <line num="46" count="6" type="stmt"/>
+        <line num="47" count="6" type="stmt"/>
         <line num="52" count="3" type="stmt"/>
       </file>
       <file name="ShelfOperator.js" path="/Users/boyanlin/Projects/css_micro_kitchen/app/shelf/ShelfOperator.js">
-        <metrics statements="22" coveredstatements="22" conditionals="4" coveredconditionals="4" methods="7" coveredmethods="7"/>
+        <metrics statements="24" coveredstatements="24" conditionals="4" coveredconditionals="4" methods="7" coveredmethods="7"/>
         <line num="3" count="2" type="stmt"/>
-        <line num="8" count="56" type="stmt"/>
-        <line num="9" count="56" type="stmt"/>
-        <line num="10" count="56" type="stmt"/>
-        <line num="11" count="34" type="stmt"/>
-        <line num="13" count="22" type="stmt"/>
-        <line num="14" count="22" type="stmt"/>
-        <line num="19" count="13" type="stmt"/>
-        <line num="20" count="13" type="stmt"/>
-        <line num="21" count="13" type="stmt"/>
-        <line num="23" count="8" type="stmt"/>
-        <line num="24" count="8" type="stmt"/>
-        <line num="29" count="73" type="cond" truecount="4" falsecount="0"/>
-        <line num="31" count="46" type="stmt"/>
-        <line num="33" count="15" type="stmt"/>
-        <line num="35" count="11" type="stmt"/>
-        <line num="37" count="1" type="stmt"/>
-        <line num="42" count="10" type="stmt"/>
-        <line num="43" count="40" type="stmt"/>
-        <line num="47" count="2" type="stmt"/>
-        <line num="48" count="8" type="stmt"/>
-        <line num="54" count="2" type="stmt"/>
+        <line num="8" count="53" type="stmt"/>
+        <line num="10" count="53" type="stmt"/>
+        <line num="11" count="53" type="stmt"/>
+        <line num="12" count="53" type="stmt"/>
+        <line num="13" count="31" type="stmt"/>
+        <line num="15" count="22" type="stmt"/>
+        <line num="16" count="22" type="stmt"/>
+        <line num="21" count="10" type="stmt"/>
+        <line num="23" count="10" type="stmt"/>
+        <line num="24" count="10" type="stmt"/>
+        <line num="25" count="10" type="stmt"/>
+        <line num="27" count="5" type="stmt"/>
+        <line num="28" count="5" type="stmt"/>
+        <line num="33" count="67" type="cond" truecount="4" falsecount="0"/>
+        <line num="35" count="44" type="stmt"/>
+        <line num="37" count="13" type="stmt"/>
+        <line num="39" count="9" type="stmt"/>
+        <line num="41" count="1" type="stmt"/>
+        <line num="46" count="64" type="stmt"/>
+        <line num="47" count="256" type="stmt"/>
+        <line num="51" count="2" type="stmt"/>
+        <line num="52" count="8" type="stmt"/>
+        <line num="58" count="2" type="stmt"/>
       </file>
     </package>
   </project>
