@@ -6,23 +6,34 @@
 * For each order, call driver to fetch and instantly prepare the food and put onto targeted shelves
 * Shelves have their own decay function and food need to be removed from shelf if their value reached zero
 * Driver come at a random delay within 2~10 seconds
+* Able to choose some options in the startup prompt
+* Shows up right in command line about shelf and oder situations
 
 ## How to run and test
-### Set up
-* Use latest node version
-* `cd path/to/css_micro_kitchen/ && npm install`
 
-### Run the app
-`cd path/to/css_micro_kitchen/ && node app`
-
-### Test the app
 ```
-> cd path/to/css_micro_kitchen/;
-> npm test
+// Set up environment
+// - Use latest node version and npm version
 
+cd path/to/css_micro_kitchen/
+npm install
+npm run build
+
+// Start the app
+npm start
+
+// Test the app
+npm test
 // See coverage
-> ./node_modules/jest/bin/jest.js --coverage
+npm coverage
 ```
+
+### Options to start up
+
+* cleanup strategy is about how you want to clean up shelves (also discussed more below)
+  * timeout strategy is the option 3 below
+  * operate strategy is the option 1 below
+* poisson distrubition rate can also be configured, default is 3.25
 
 ## Handle moving orders to/from overflow shelf
 
