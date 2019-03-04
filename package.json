@@ -6,10 +6,10 @@
   "dependencies": {
     "cli-table": "^0.3.1",
     "esm": "^3.2.9",
+    "inquirer": "^6.2.2",
     "module-alias": "^2.2.0",
     "nullthrows": "^1.1.1",
-    "poisson-process": "^1.0.0",
-    "winston": "^3.2.1"
+    "poisson-process": "^1.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.3.4",

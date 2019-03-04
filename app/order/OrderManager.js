@@ -7,8 +7,6 @@ import {Order} from './Order';
 import {ShelfOperator} from '../shelf/ShelfOperator';
 const poissonProcess = require('poisson-process');
 
-const POISSON_DISTRIBUTION_LAMBDA = 3.25;
-
 /**
  * Responsibility: Take orders and simulate Poisson distribution to dispatch.
  */
@@ -43,10 +41,15 @@ export class OrderManager {
     return parseInt(Math.random() * 8 + 2, 10);
   }
 
+  getPoissonDistributionRate(): number {
+    const OVERWRITE_RATE = process.env.POISSON_RATE;
+    return !isNaN(OVERWRITE_RATE) ? parseFloat(OVERWRITE_RATE) : 3.25;
+  }
+
   // In real world, this class will be switched and instead take incoming
   // requests from the outside which might directly call into handleOrder()
   setupProcess() {
-    return poissonProcess.create(1000/POISSON_DISTRIBUTION_LAMBDA, () => {
+    return poissonProcess.create(1000/this.getPoissonDistributionRate(), () => {
       const orderID = this.index++;
       if (orderID >= this.orders.length) {
         'function' === typeof this.postProcess && this.postProcess();

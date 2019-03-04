@@ -22,11 +22,19 @@ class RenderingFacade {
 
   render(): void {
     this.clearScreen();
-    const table = new Table({head: this.header});
+    const table = new Table({
+      head: this.header,
+      style: {
+        head: ['blue', 'bold'],
+      },
+      colWidths: [16].concat(Array.apply(null, Array(this.getRightColumnSize())).map(a => 6)),
+    });
     for (let [shelfName, shelfRender] of this.shelfRenderers.entries()) {
       table.push({[shelfName]: shelfRender.renderShelfRow()});
     }
     console.log(table.toString());
+    console.info("In above example, each row is the shelf's ongoing orders. #<number> means order's number.");
+    console.info("After every order is finished dispatching to driver (or wasted), the program will finish");
   }
 
   clearScreen(): void {
@@ -35,13 +43,17 @@ class RenderingFacade {
   }
 
   buildHeader(): Array<string> {
-    const sizes = [coldShelf, frozenShelf, hotShelf, overflowShelf].map(shelf => shelf.getSize());
-    const maxSize = Math.max.apply(null, sizes);
+    const maxSize = this.getRightColumnSize();
     const headerSlots = [];
     for (let i=1; i<=maxSize; i++) {
       headerSlots.push("@"+i);
     }
     return ['Shelf Name'].concat(headerSlots);
+  }
+
+  getRightColumnSize(): number {
+    const sizes = [coldShelf, frozenShelf, hotShelf, overflowShelf].map(shelf => shelf.getSize());
+    return Math.max.apply(null, sizes);
   }
 }
 
