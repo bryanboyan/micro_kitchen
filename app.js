@@ -1,7 +1,8 @@
 'use strict';
 
-import OrderDAO from './server_build/order/OrderDAO';
-import {OrderManager} from './server_build/order/OrderManager';
+import OrderDAO from './app_build/order/OrderDAO';
+import {OrderManager} from './app_build/order/OrderManager';
+import RenderingFacade from './app_build/render/RenderingFacade';
 
 process.env.STRATEGY = process.env.STRATEGY || 'timeout';
 
@@ -14,6 +15,8 @@ OrderDAO.readAll((err, orders) => {
   const start = Date.now();
 
   const manager = new OrderManager(orders);
+
+  RenderingFacade.render();
 
   manager.startProcessing(() => {
     manager.stopProcessing();

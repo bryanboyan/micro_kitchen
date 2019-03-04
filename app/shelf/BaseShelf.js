@@ -60,9 +60,9 @@ export class BaseShelf {
   }
 
   __removeOrders(): void {
-    this.orders = new Map();
     for (var [id, order] of this.orders) {
       this.removeOrderFromShelf(order);
     }
+    this.orders.clear();
   }
 }
