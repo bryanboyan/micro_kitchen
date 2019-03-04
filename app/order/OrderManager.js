@@ -7,7 +7,7 @@ import {Order} from './Order';
 import {ShelfOperator} from '../shelf/ShelfOperator';
 const poissonProcess = require('poisson-process');
 
-const POISSON_DISTRIBUTION_LAMBDA = 1000; // 3.25;
+const POISSON_DISTRIBUTION_LAMBDA = 3.25;
 
 /**
  * Responsibility: Take orders and simulate Poisson distribution to dispatch.
@@ -53,6 +53,9 @@ export class OrderManager {
         return;
       }
       const order = new Order(orderID, this.orders[orderID]);
+      // TODO
+      // order.shelfLife /= 10;
+      // order.shelfLife = parseInt(order.shelfLife, 10);
       this.handleOrder(order);
     });
   }

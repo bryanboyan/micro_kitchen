@@ -24,6 +24,7 @@ export class Order {
   shelfLife: number;
   decayRate: number;
   shelf: ?BaseShelf;
+  ttlTimer: number;
 
   constructor(id: number, order: OrderRawType) {
     this.id = id;
@@ -36,10 +37,23 @@ export class Order {
 
   putOnShelf(shelf: BaseShelf): void {
     this.shelf = shelf;
+    if (process.env.STRATEGY === 'timeout') {
+      this.ttlTimer = setTimeout(
+        () => this.removeFromShelf(),
+        this.getTimeToLive() * 1000,
+      );
+    }
   }
 
   removeFromShelf(): void {
     this.shelf = null;
+    if (process.env.STRATEGY === 'timeout') {
+      clearTimeout(this.ttlTimer);
+    }
+  }
+
+  getTimeToLive(): number {
+    return Math.ceil(this.shelfLife / (this.decayRate + 1));
   }
 
   getValue(): number {

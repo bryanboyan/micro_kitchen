@@ -23,9 +23,7 @@ export class BaseShelf {
     if (this.getInventoryNumber() == this.getSize()) {
       throw new Error('Shelf full');
     }
-
-    this.orders.set(order.id, order);
-    order.putOnShelf(this);
+    this.putOrderOnShelfImpl(order);
   }
 
   pickOrder(id: number): Order {
@@ -34,9 +32,7 @@ export class BaseShelf {
     }
 
     const order = nullthrows(this.orders.get(id));
-    
-    this.orders.delete(id);
-    order.removeFromShelf();
+    this.removeOrderFromShelfImpl(order);
 
     return order;
   }
@@ -48,12 +44,25 @@ export class BaseShelf {
   removeWastedOrders(): void {
     for (var [id, order] of this.orders) {
       if (order.getValue() <= 0) {
-        this.orders.delete(id);
+        this.removeOrderFromShelfImpl(order);
       }
     }
   }
 
+  putOrderOnShelfImpl(order: Order): void {
+    this.orders.set(order.id, order);
+    order.putOnShelf(this);
+  }
+
+  removeOrderFromShelfImpl(order: Order): void {
+    this.orders.delete(order.id);
+    order.removeFromShelf();
+  }
+
   __removeOrders(): void {
     this.orders = new Map();
+    for (var [id, order] of this.orders) {
+      this.removeOrderFromShelfImpl(order);
+    }
   }
 }

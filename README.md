@@ -60,3 +60,13 @@ Obviously using setTimeout in node.js isn't scalable when it's distributed syste
 **Migration**
 
 I started with Option 1, but after finishing the initial deliverables and tests, I decided to refactor the relationship between Shelf and Order as in Option 3.
+
+And in order to verify both, I updated the code to be able to handle two types of strategies of handling cleaning ups.
+
+* `STRATEGY='timeout' npm start` will run the timeout strategy where the orders are managing their own expiration and remove themselves from shelf when expired
+* `STRATEGY='operate' npm start` will run the operate strategy where the ShelfOperator cleans up everytime it puts/picks orders
+
+I did experiment and found that with multiple Poisson distribution rate:
+* 3.25 (default), operate used 44.5s and timeout used 45.2s
+* 100, operate used 
+* 200, operate used 0.87s and timeout used 0.81s

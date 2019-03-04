@@ -3,6 +3,8 @@
 import OrderDAO from './app_build/order/OrderDAO';
 import {OrderManager} from './app_build/order/OrderManager';
 
+process.env.STRATEGY = process.env.STRATEGY || 'timeout';
+
 OrderDAO.readAll((err, orders) => {
   if (err) {
     console.error('Reading orders failed, stop.');

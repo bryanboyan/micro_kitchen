@@ -47,8 +47,10 @@ export class ShelfOperator {
   }
 
   static cleanUpShelves(): void {
-    [hotShelf, coldShelf, frozenShelf, overflowShelf]
-      .map(shelf => shelf.removeWastedOrders());
+    if (process.env.STRATEGY === 'operate') {
+      [hotShelf, coldShelf, frozenShelf, overflowShelf]
+        .map(shelf => shelf.removeWastedOrders());
+    }
   }
 
   static getAllInventoryNumber(): number {
