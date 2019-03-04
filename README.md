@@ -67,6 +67,7 @@ And in order to verify both, I updated the code to be able to handle two types o
 * `STRATEGY='operate' npm start` will run the operate strategy where the ShelfOperator cleans up everytime it puts/picks orders
 
 I did experiment and found that with multiple Poisson distribution rate:
+
 * 3.25 (default), operate used 44.5s and timeout used 45.2s
-* 100, operate used 
+* 100, operate used 1.6s and timeout used 1.5
 * 200, operate used 0.87s and timeout used 0.81s
