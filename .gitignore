@@ -3,3 +3,4 @@ debug/
 flow-typed/
 coverage/
 app_build/
+package-lock.json
