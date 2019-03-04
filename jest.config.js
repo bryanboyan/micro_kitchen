@@ -3,5 +3,6 @@ module.exports = {
     "^.+\\.js?$": "babel-jest"
   },
   transformIgnorePatterns: [],
+  modulePathIgnorePatterns: ["<rootDir>/app/"],
   setupFiles: ["<rootDir>/test/setup.js"],
 };

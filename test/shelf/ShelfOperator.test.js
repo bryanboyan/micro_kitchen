@@ -67,9 +67,9 @@ test('Mapping from temp to shelf should be correct', () => {
   expect(() => ShelfOperator.mapShelf(order)).toThrow();
 });
 
-test.skip('Removing wasted orders will get rid of wasted orders', done => {
+test('Removing wasted orders will get rid of wasted orders', done => {
   const soonExpiredOrders = ordersData.map((orderData, index) => {
-    let newOrderData = Object.assign({}, orderData, {shelfLife: 1});
+    let newOrderData = Object.assign({}, orderData, {shelfLife: 0.1});
     return new Order(index, newOrderData);
   });
   const indexOffsite = soonExpiredOrders.length;
