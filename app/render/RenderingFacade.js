@@ -6,6 +6,7 @@ const Table = require('cli-table');
 
 import {coldShelf, frozenShelf, hotShelf, overflowShelf} from '../shelf/MultiShelves';
 import {ShelfRenderer} from './ShelfRenderer';
+import ShelfPubSub from '../ShelfPubSub';
 
 class RenderingFacade {
   shelfRenderers: Map<string, ShelfRenderer>;
@@ -28,7 +29,7 @@ class RenderingFacade {
     }
     console.log(table.toString());
 
-    setTimeout(() => this.render(), 2000);
+    // setTimeout(() => this.render(), 2000);
   }
 
   clearScreen(): void {

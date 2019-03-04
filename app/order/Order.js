@@ -4,6 +4,7 @@
 
 import {OrderDecayStrategyFacade} from './decay_strategies/OrderDecayStrategyFacade';
 import {BaseShelf} from '../shelf/BaseShelf';
+import RenderingFacade from '../render/RenderingFacade';
 
 import type {BaseOrderDecayStrategy} from './decay_strategies/BaseOrderDecayStrategy';
 export type OrderTemp = 'hot' | 'cold' | 'frozen';
@@ -48,6 +49,7 @@ export class Order {
         this.getTimeToLive() * 1000,
       );
     }
+    this.triggerRerendering();
   }
 
   removeFromShelf(): void {
@@ -55,6 +57,11 @@ export class Order {
     if (process.env.STRATEGY === 'timeout') {
       clearTimeout(this.ttlTimer);
     }
+    this.triggerRerendering();
+  }
+
+  triggerRerendering(): void {
+    RenderingFacade.render();
   }
 
   getTimeToLive(): number {
