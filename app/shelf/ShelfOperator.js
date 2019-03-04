@@ -1,6 +1,7 @@
 'use strict';
 
 // @flow
+
 import type {Order} from '../order/Order';
 import type {BaseShelf} from './BaseShelf';
 

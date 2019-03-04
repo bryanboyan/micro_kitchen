@@ -2,8 +2,10 @@
 
 // @flow
 
+import {OrderDecayStrategyFacade} from './decay_strategies/OrderDecayStrategyFacade';
 import {BaseShelf} from '../shelf/BaseShelf';
 
+import type {BaseOrderDecayStrategy} from './decay_strategies/BaseOrderDecayStrategy';
 export type OrderTemp = 'hot' | 'cold' | 'frozen';
 export type OrderRawType = {
   name: string,
@@ -18,21 +20,22 @@ export type OrderRawType = {
  */
 export class Order {
   id: number;
-  createdAt: number;
   name: string;
   temp: OrderTemp;
   shelfLife: number;
   decayRate: number;
+  decayStrategy: BaseOrderDecayStrategy;
+
   shelf: ?BaseShelf;
   ttlTimer: number;
 
-  constructor(id: number, order: OrderRawType) {
+  constructor(id: number, orderData: OrderRawType) {
     this.id = id;
-    this.createdAt = Date.now();
-    this.name = order.name;
-    this.temp = order.temp;
-    this.shelfLife = order.shelfLife;
-    this.decayRate = order.decayRate;
+    this.name = orderData.name;
+    this.temp = orderData.temp;
+    this.shelfLife = orderData.shelfLife;
+    this.decayRate = orderData.decayRate;
+    this.decayStrategy = OrderDecayStrategyFacade.chooseStrategy(orderData);
   }
 
   putOnShelf(shelf: BaseShelf): void {
@@ -53,11 +56,10 @@ export class Order {
   }
 
   getTimeToLive(): number {
-    return Math.ceil(this.shelfLife / (this.decayRate + 1));
+    return this.decayStrategy.getTimeToLive();
   }
 
   getValue(): number {
-    const orderAgeSec = parseInt((Date.now() - this.createdAt) / 1000, 10);
-    return this.shelfLife - orderAgeSec - this.decayRate * orderAgeSec;
+    return this.decayStrategy.getCurrentValue();
   }
 }
