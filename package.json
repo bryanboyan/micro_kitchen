@@ -4,12 +4,12 @@
   "description": "The food ordering and delivery system.",
   "main": "index.js",
   "dependencies": {
+    "cli-color": "^1.4.0",
+    "clui": "^0.3.6",
     "esm": "^3.2.9",
-    "express": "^4.16.4",
     "module-alias": "^2.2.0",
     "nullthrows": "^1.1.1",
-    "poisson-process": "^1.0.0",
-    "socket.io": "^2.2.0"
+    "poisson-process": "^1.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.3.4",

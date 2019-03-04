@@ -1,65 +1,68 @@
 'use strict';
 
+// @flow
+
 const nullthrows = require('nullthrows');
-import { Order } from '../order/Order';
+import {Order} from '../order/Order';
 
 /**
  * Base class of multitypes of shelf.
  */
 export class BaseShelf {
+  orders: Map<number, Order>;
 
   constructor() {
     this.orders = new Map();
   }
 
-  getSize() {
+  getSize(): number {
     return 0;
   }
 
-  putOrder(order) {
+  putOrder(order: Order): void {
     if (this.getInventoryNumber() == this.getSize()) {
       throw new Error('Shelf full');
     }
-    this.putOrderOnShelfImpl(order);
+    this.putOrderOnShelf(order);
   }
 
-  pickOrder(id) {
+  pickOrder(id: number): Order {
     if (!this.orders.has(id)) {
       throw new Error('Order ' + id + ' not available');
     }
 
     const order = nullthrows(this.orders.get(id));
-    this.removeOrderFromShelfImpl(order);
+    this.removeOrderFromShelf(order);
 
     return order;
   }
 
-  getInventoryNumber() {
-    return this.orders.size;
-  }
-
-  removeWastedOrders() {
-    for (var [id, order] of this.orders) {
-      if (order.getValue() <= 0) {
-        this.removeOrderFromShelfImpl(order);
-      }
-    }
-  }
-
-  putOrderOnShelfImpl(order) {
+  putOrderOnShelf(order: Order): void {
     this.orders.set(order.id, order);
     order.putOnShelf(this);
   }
 
-  removeOrderFromShelfImpl(order) {
+  removeOrderFromShelf(order: Order): void {
     this.orders.delete(order.id);
     order.removeFromShelf();
   }
 
-  __removeOrders() {
+  getInventoryNumber(): number {
+    return this.orders.size;
+  }
+
+  removeWastedOrders(): void {
+    for (var [id, order] of this.orders) {
+      if (order.getValue() <= 0) {
+        this.removeOrderFromShelf(order);
+      }
+    }
+  }
+
+  __removeOrders(): void {
     this.orders = new Map();
     for (var [id, order] of this.orders) {
-      this.removeOrderFromShelfImpl(order);
+      this.removeOrderFromShelf(order);
     }
   }
 }

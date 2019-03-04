@@ -1,6 +1,6 @@
 'use strict';
 
-import {Order} from '../../server_build/order/Order';
+import {Order} from '../../app_build/order/Order';
 const orders = require('../sample_orders');
 
 test('Order can be constructed with correct values', () => {

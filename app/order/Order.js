@@ -42,7 +42,9 @@ export class Order {
     this.shelf = shelf;
     if (process.env.STRATEGY === 'timeout') {
       this.ttlTimer = setTimeout(
-        () => this.removeFromShelf(),
+        () => {
+          this.shelf && this.shelf.removeOrderFromShelf(this);
+        },
         this.getTimeToLive() * 1000,
       );
     }
