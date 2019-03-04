@@ -5,9 +5,11 @@
   "main": "index.js",
   "dependencies": {
     "esm": "^3.2.9",
+    "express": "^4.16.4",
     "module-alias": "^2.2.0",
     "nullthrows": "^1.1.1",
-    "poisson-process": "^1.0.0"
+    "poisson-process": "^1.0.0",
+    "socket.io": "^2.2.0"
   },
   "devDependencies": {
     "@babel/core": "^7.3.4",

@@ -1,7 +1,7 @@
 'use strict';
 
-import {Order} from '../../app_build/order/Order';
-import {BaseShelf} from '../../app_build/shelf/BaseShelf';
+import {Order} from '../../server_build/order/Order';
+import {BaseShelf} from '../../server_build/shelf/BaseShelf';
 const orders = require('../sample_orders');
 
 const SHELF_SIZE = 10;

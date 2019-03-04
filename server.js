@@ -1,7 +1,7 @@
 'use strict';
 
-import OrderDAO from './app_build/order/OrderDAO';
-import {OrderManager} from './app_build/order/OrderManager';
+import OrderDAO from './server_build/order/OrderDAO';
+import {OrderManager} from './server_build/order/OrderManager';
 
 process.env.STRATEGY = process.env.STRATEGY || 'timeout';
 
