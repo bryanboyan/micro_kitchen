@@ -19,7 +19,8 @@ test('Orders can be handled with right index increase', () => {
   for (var i=0; i<numOrders; i++) {
     manager.handleOrder(new Order(i, ordersData[i]));
   }
-  expect(setTimeout).toHaveBeenCalledTimes(numOrders);
+  // One for order expire the other for driver pick up
+  expect(setTimeout).toHaveBeenCalledTimes(numOrders * 2);
 });
 
 test('Calling dispatching start will correctly call back', done => {

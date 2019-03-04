@@ -37,7 +37,6 @@ class OverflowShelf extends BaseShelf {
       this.putOrder(order);
       return true;
     } catch (err) {
-      console.info('Dropping order due to overflow shelf full');
       return false;
     }
   }
@@ -46,7 +45,6 @@ class OverflowShelf extends BaseShelf {
     try {
       return this.pickOrder(id);
     } catch (err) {
-      console.info(`Not able to pick order ${id} from overflowShelf`);
       return null;
     }
   }

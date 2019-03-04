@@ -2,5 +2,6 @@ module.exports = {
   transform: {
     "^.+\\.js?$": "babel-jest"
   },
-  transformIgnorePatterns: []
+  transformIgnorePatterns: [],
+  setupFiles: ["<rootDir>/test/setup.js"],
 };

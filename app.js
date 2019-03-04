@@ -1,5 +1,6 @@
 'use strict';
 
+const winston = require('winston');
 import OrderDAO from './app_build/order/OrderDAO';
 import {OrderManager} from './app_build/order/OrderManager';
 import RenderingFacade from './app_build/render/RenderingFacade';
