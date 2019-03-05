@@ -1,6 +1,6 @@
 {
   "name": "css_micro_kitchen",
-  "version": "0.0.1",
+  "version": "0.6.0",
   "description": "The food ordering and delivery system.",
   "main": "index.js",
   "dependencies": {
