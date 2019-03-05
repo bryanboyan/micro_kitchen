@@ -54,6 +54,7 @@ export class BaseShelf {
   removeWastedOrders(): void {
     for (var [id, order] of this.orders) {
       if (order.getValue() <= 0) {
+        console.log(`${id} value minus ${order.getValue()}`)
         this.removeOrderFromShelf(order);
       }
     }

@@ -4,6 +4,7 @@
 
 import {OrderDecayStrategyFacade} from './decay_strategies/OrderDecayStrategyFacade';
 import {BaseShelf} from '../shelf/BaseShelf';
+import {overflowShelf} from '../shelf/MultiShelves';
 import RenderingFacade from '../render/RenderingFacade';
 
 import type {BaseOrderDecayStrategy} from './decay_strategies/BaseOrderDecayStrategy';
@@ -41,6 +42,9 @@ export class Order {
 
   putOnShelf(shelf: BaseShelf): void {
     this.shelf = shelf;
+    if (shelf === overflowShelf) {
+      this.decayStrategy.setDoubleDecay();
+    }
     if (process.env.CLEANUP_STRATEGY === 'timeout') {
       this.ttlTimer = setTimeout(
         () => {
@@ -65,10 +69,10 @@ export class Order {
   }
 
   getTimeToLive(): number {
-    return this.decayStrategy.getTimeToLive();
+    return parseInt(this.decayStrategy.getTimeToLive(), 10);
   }
 
   getValue(): number {
-    return this.decayStrategy.getCurrentValue();
+    return parseInt(this.decayStrategy.getCurrentValue(), 10);
   }
 }

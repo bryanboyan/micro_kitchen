@@ -16,7 +16,7 @@ export class ShelfRenderer {
   renderShelfRow(): Array<string> {
     const orders = [];
     for (let order of this.shelf.orders.values()) {
-      orders.push(`#${order.id}`);
+      orders.push(`${order.getValue()}`)
     }
     return orders;
   }

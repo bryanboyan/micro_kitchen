@@ -99,8 +99,7 @@ test('In operate mode, adding/removing orders to clean up wastes', done => {
     expect(ShelfOperator.putOrder(order)).toBeTruthy();
   });
 
-  expect(ShelfOperator.getAllInventoryNumber())
-    .toEqual(allOrders.length);
+  expect(ShelfOperator.getAllInventoryNumber()).toEqual(allOrders.length);
 
   setTimeout(() => {
     // We have to "operate" on it to trigger clean up
@@ -119,7 +118,7 @@ test('In operate mode, adding/removing orders to clean up wastes', done => {
  */
 function getMixedExpirationOrders() {
   const soonExpiredOrders = ordersData.map((orderData, index) => {
-    let newOrderData = Object.assign({}, orderData, {shelfLife: 0.1});
+    let newOrderData = Object.assign({}, orderData, {shelfLife: 1});
     return new Order(index, newOrderData);
   });
   const indexOffsite = soonExpiredOrders.length;

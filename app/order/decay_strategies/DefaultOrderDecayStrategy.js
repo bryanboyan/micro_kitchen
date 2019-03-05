@@ -9,11 +9,11 @@ import {BaseOrderDecayStrategy} from './BaseOrderDecayStrategy';
  */
 export class DefaultOrderDecayStrategy extends BaseOrderDecayStrategy {
   getTimeToLive(): number {
-    return Math.ceil(this.orderData.shelfLife / (this.orderData.decayRate + 1));
+    return Math.ceil(this.orderData.shelfLife / (this.getDecayRate() + 1));
   }
 
   getCurrentValue(): number {
     const orderAgeSec = parseInt((Date.now() - this.orderCreatedAt) / 1000, 10);
-    return this.orderData.shelfLife - orderAgeSec - this.orderData.decayRate * orderAgeSec;
+    return this.orderData.shelfLife - orderAgeSec - this.getDecayRate() * orderAgeSec;
   }
 }

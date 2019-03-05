@@ -9,16 +9,17 @@ It's a plain command line based UI that shows slots on shelves and the order num
 ┌────────────────┬──────┬──────┬──────┬──────┬──────┐
 │ Shelf Name     │ @1   │ @2   │ @3   │ @4   │ @5   │
 ├────────────────┼──────┼──────┼──────┼──────┼──────┤
-│ HotShelf       │ #31  │ #33  │ #38  │ #41  │
+│ HotShelf       │  31  │ 233  │ 138  │ 141  │
 ├────────────────┼──────┼──────┼──────┼──────┼──────┤
 │ ColdShelf      │
 ├────────────────┼──────┼──────┼──────┼──────┼──────┤
-│ FrozenShelf    │ #29  │ #32  │ #34  │ #35  │
+│ FrozenShelf    │ 129  │  32  │ 134  │ 135  │
 ├────────────────┼──────┼──────┼──────┼──────┼──────┤
 │ OverflowShelf  │
 └────────────────┴──────┴──────┴──────┴──────┴──────┘
 ```
-In above example, each row is the shelf's ongoing orders. #<number> means order's number.
+In above example, each row is the shelf's ongoing orders. @1 means the first slot in each shelf, number below is the value of the order.
+
 After every order is finished dispatching to driver (or wasted), the program will finish.
 
 ### Configurable
