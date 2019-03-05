@@ -11,11 +11,6 @@ const path = require('path');
  *  back to some storage.
  */
 class OrderDAO {
-
-  constructor() {
-    // TODO Historical orders
-  }
-
   readAll(cb: (err: ?Error, data: Array<OrderRawType>) => void) {
     fs.readFile(path.join(__dirname, '../../assets/orders.json'), "utf8", (err, data) => {
       cb(err, JSON.parse(data));

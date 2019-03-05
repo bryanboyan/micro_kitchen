@@ -56,9 +56,6 @@ export class OrderManager {
         return;
       }
       const order = new Order(orderID, this.orders[orderID]);
-      // TODO
-      // order.shelfLife /= 10;
-      // order.shelfLife = parseInt(order.shelfLife, 10);
       this.handleOrder(order);
     });
   }
