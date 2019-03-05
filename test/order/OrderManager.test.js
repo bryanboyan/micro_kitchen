@@ -14,7 +14,7 @@ test('Dispatcher can be instantiated', () => {
 });
 
 test('Orders can be handled correctly', () => {
-  process.env.STRATEGY = 'operate';
+  process.env.CLEANUP_STRATEGY = 'operate';
 
   const manager = new OrderManager(ordersData);
   const numOrders = ordersData.length;

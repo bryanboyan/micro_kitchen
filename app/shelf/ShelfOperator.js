@@ -46,7 +46,7 @@ export class ShelfOperator {
   }
 
   static cleanUpShelves(): void {
-    if (process.env.STRATEGY === 'operate') {
+    if (process.env.CLEANUP_STRATEGY === 'operate') {
       [hotShelf, coldShelf, frozenShelf, overflowShelf]
         .map(shelf => shelf.removeWastedOrders());
     }

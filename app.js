@@ -5,8 +5,6 @@ import OrderDAO from './app_build/order/OrderDAO';
 import {OrderManager} from './app_build/order/OrderManager';
 import RenderingFacade from './app_build/render/RenderingFacade';
 
-process.env.STRATEGY = process.env.STRATEGY || 'timeout';
-
 function start(orders) {
   const start = Date.now();
 
@@ -22,15 +20,15 @@ function start(orders) {
 function prompt(ready) {
   inquirer.prompt([
     {
-      type: 'list',
-      name: 'strategy',
-      message: 'Pick a strategy to do order cleanup (default: timeout)',
-      choices: ['timeout', 'operate'],
-    },
-    {
       type: 'input',
       name: 'poissonRate',
       message: 'Overwrite the poisson distribution rate? (default as 3.25)',
+    },
+    {
+      type: 'list',
+      name: 'cleanupStrategy',
+      message: 'Pick a cleanup strategy to do order cleanup (default: timeout)',
+      choices: ['timeout', 'operate'],
     },
     {
       type: 'list',
@@ -40,18 +38,18 @@ function prompt(ready) {
     },
     {type: 'input', name: 'ready', message: 'Ready to start?'},
   ]).then(({
-    strategy,
     poissonRate,
+    cleanupStrategy,
     decayStrategy,
     _enter,
   }) => {
-    process.env.STRATEGY = strategy === 'operate' ? strategy : 'timeout';
     if (poissonRate != '') {
       process.env.POISSON_RATE = new Number(poissonRate);
     }
-    console.log(decayStrategy);
+    process.env.CLEANUP_STRATEGY = cleanupStrategy === 'operate' ? cleanupStrategy : 'timeout';
+    process.env.DECAY_STRATEGY = decayStrategy === 'dynamic' ? decayStrategy : 'static';
 
-    // ready();
+    ready();
   });
 }
 

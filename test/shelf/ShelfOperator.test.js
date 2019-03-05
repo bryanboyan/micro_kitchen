@@ -68,7 +68,7 @@ test('Mapping from temp to shelf should be correct', () => {
 });
 
 test('In timeout mode, orders will be cleaned up by themselves', done => {
-  process.env.STRATEGY = 'timeout';
+  process.env.CLEANUP_STRATEGY = 'timeout';
   process.env.DECAY_STRATEGY = 'static';
   const allOrders = getMixedExpirationOrders();
   const longEnoughOrderCount = allOrders.length / 2; // by convention.
@@ -88,7 +88,7 @@ test('In timeout mode, orders will be cleaned up by themselves', done => {
 });
 
 test('In operate mode, adding/removing orders to clean up wastes', done => {
-  process.env.STRATEGY = 'operate';
+  process.env.CLEANUP_STRATEGY = 'operate';
   process.env.DECAY_STRATEGY = 'static';
 
   const allOrders = getMixedExpirationOrders();

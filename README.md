@@ -1,5 +1,49 @@
 # Micro kitchen system
 
+## About
+
+### UI
+It's a plain command line based UI that shows slots on shelves and the order number on there.
+
+```
+┌────────────────┬──────┬──────┬──────┬──────┬──────┐
+│ Shelf Name     │ @1   │ @2   │ @3   │ @4   │ @5   │
+├────────────────┼──────┼──────┼──────┼──────┼──────┤
+│ HotShelf       │ #31  │ #33  │ #38  │ #41  │
+├────────────────┼──────┼──────┼──────┼──────┼──────┤
+│ ColdShelf      │
+├────────────────┼──────┼──────┼──────┼──────┼──────┤
+│ FrozenShelf    │ #29  │ #32  │ #34  │ #35  │
+├────────────────┼──────┼──────┼──────┼──────┼──────┤
+│ OverflowShelf  │
+└────────────────┴──────┴──────┴──────┴──────┴──────┘
+```
+In above example, each row is the shelf's ongoing orders. #<number> means order's number.
+After every order is finished dispatching to driver (or wasted), the program will finish.
+
+### Configurable
+When launching, it will ask you questions to configure the run.
+
+```
+// This way you can update your poisson distribution rate when running
+? Overwrite the poisson distribution rate? (default as 3.25) 100
+
+// This is the way to clean up wasted orders
+// - timeout strategy (option 3 below) means bottom up where the orders are managing their own expiration and remove themselves from shelf when expired
+// - operate strategy (option 1 below) means top down where the ShelfOperator cleans up everytime it puts/picks orders
+? Pick a cleanup strategy to do order cleanup (default: timeout) operate
+
+// This is the way to choose the decay model
+// - static means static decay model as shown in assignment
+// - dynamic means some configurable models (right now based on temp)
+? Choose strategy for order decay (default: static) static
+
+// Just hit enter to start
+? Ready to start?
+```
+
+Feel free to make different choices and run again.
+
 ## Main features
 * Read from assets file for static orders
 * Handle orders sequentially with Poisson Distribution rate
@@ -27,13 +71,6 @@ npm test
 // See coverage
 npm run coverage
 ```
-
-### Options to start up
-
-* cleanup strategy is about how you want to clean up shelves (also discussed more below)
-  * timeout strategy is the option 3 below
-  * operate strategy is the option 1 below
-* poisson distrubition rate can also be configured, default is 3.25
 
 ## Handle moving orders to/from overflow shelf
 
@@ -72,13 +109,68 @@ Obviously using setTimeout in node.js isn't scalable when it's distributed syste
 
 I started with Option 1, but after finishing the initial deliverables and tests, I decided to refactor the relationship between Shelf and Order as in Option 3.
 
-And in order to verify both, I updated the code to be able to handle two types of strategies of handling cleaning ups.
-
-* `STRATEGY='timeout' npm start` will run the timeout strategy where the orders are managing their own expiration and remove themselves from shelf when expired
-* `STRATEGY='operate' npm start` will run the operate strategy where the ShelfOperator cleans up everytime it puts/picks orders
+And in order to verify both, I updated the code to be able to handle two types of strategies of handling cleaning ups. as shown in above description.
 
 I did experiment and found that with multiple Poisson distribution rate:
 
 * 3.25 (default), operate used 44.5s and timeout used 45.2s
 * 100, operate used 1.6s and timeout used 1.5
 * 200, operate used 0.87s and timeout used 0.81s
+
+
+## The Project
+
+### Flow Type
+I did adopt flow type in the whole system which made it so much better when the code grows a little bit.
+
+The folder structure is like this.
+
+```
+├── README.md					// this file
+├── app						// the main code folder with flowtyped.
+├── app.js					// the app entry point
+├── app_build					// the target folder after removing flowtyped
+├── assets					// static data, including order.json
+├── coverage					// test coverage folder
+├── flow-typed				// for flow to install types for node_modules
+├── index.js					// wraps app.js with esm which helps with es6
+└── test						// folder for test code
+```
+
+### Tests
+
+The current test coverage is 100% as shown below. I used jest to do testing to make sure when I do changes/migrations things are always right.
+
+```
+~/Projects/micro_kitchen(master ✗) npm run coverage
+
+> css_micro_kitchen@0.0.1 coverage /Users/boyanlin/Projects/micro_kitchen
+> jest --coverage
+
+ PASS  test/order/OrderManager.test.js
+ PASS  test/order/decay_strategies/MultiOrderDecayStrategies.test.js
+ PASS  test/shelf/BaseShelf.test.js
+ PASS  test/shelf/MultiShelves.test.js
+ PASS  test/order/decay_strategies/OrderDecayStrategyFacade.test.js
+ PASS  test/order/decay_strategies/BaseOrderDecayStrategy.test.js
+ PASS  test/order/Order.test.js
+ PASS  test/shelf/ShelfOperator.test.js
+-------------------------------|----------|----------|----------|----------|-------------------|
+File                           |  % Stmts | % Branch |  % Funcs |  % Lines | Uncovered Line #s |
+-------------------------------|----------|----------|----------|----------|-------------------|
+All files                      |      100 |    96.67 |      100 |      100 |                   |
+ order                         |      100 |    91.67 |      100 |      100 |                   |
+  Order.js                     |      100 |      100 |      100 |      100 |                   |
+  OrderManager.js              |      100 |    83.33 |      100 |      100 |                39 |
+ order/decay_strategies        |      100 |      100 |      100 |      100 |                   |
+  BaseOrderDecayStrategy.js    |      100 |      100 |      100 |      100 |                   |
+  DefaultOrderDecayStrategy.js |      100 |      100 |      100 |      100 |                   |
+  FrozenOrderDecayStrategy.js  |      100 |      100 |      100 |      100 |                   |
+  HotOrderDecayStrategy.js     |      100 |      100 |      100 |      100 |                   |
+  OrderDecayStrategyFacade.js  |      100 |      100 |      100 |      100 |                   |
+ shelf                         |      100 |      100 |      100 |      100 |                   |
+  BaseShelf.js                 |      100 |      100 |      100 |      100 |                   |
+  MultiShelves.js              |      100 |      100 |      100 |      100 |                   |
+  ShelfOperator.js             |      100 |      100 |      100 |      100 |                   |
+-------------------------------|----------|----------|----------|----------|-------------------|
+```

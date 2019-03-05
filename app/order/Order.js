@@ -41,7 +41,7 @@ export class Order {
 
   putOnShelf(shelf: BaseShelf): void {
     this.shelf = shelf;
-    if (process.env.STRATEGY === 'timeout') {
+    if (process.env.CLEANUP_STRATEGY === 'timeout') {
       this.ttlTimer = setTimeout(
         () => {
           this.shelf && this.shelf.removeOrderFromShelf(this);
@@ -54,7 +54,7 @@ export class Order {
 
   removeFromShelf(): void {
     this.shelf = null;
-    if (process.env.STRATEGY === 'timeout') {
+    if (process.env.CLEANUP_STRATEGY === 'timeout') {
       clearTimeout(this.ttlTimer);
     }
     this.triggerRerendering();
