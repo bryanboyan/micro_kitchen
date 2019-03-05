@@ -67,7 +67,57 @@ test('Mapping from temp to shelf should be correct', () => {
   expect(() => ShelfOperator.mapShelf(order)).toThrow();
 });
 
-test('Removing wasted orders will get rid of wasted orders', done => {
+test('In timeout mode, orders will be cleaned up by themselves', done => {
+  process.env.STRATEGY = 'timeout';
+  process.env.DECAY_STRATEGY = 'static';
+  const allOrders = getMixedExpirationOrders();
+  const longEnoughOrderCount = allOrders.length / 2; // by convention.
+
+  // Put all orders
+  allOrders.map(order => {
+    expect(ShelfOperator.putOrder(order)).toBeTruthy();
+  });
+
+  expect(ShelfOperator.getAllInventoryNumber()).toEqual(allOrders.length);
+
+  setTimeout(() => {
+    // Self supported clean up
+    expect(ShelfOperator.getAllInventoryNumber()).toEqual(longEnoughOrderCount);
+    done();
+  }, 1500); // in 1.5 seconds (> the life of soonExpiredOrders)
+});
+
+test('In operate mode, adding/removing orders to clean up wastes', done => {
+  process.env.STRATEGY = 'operate';
+  process.env.DECAY_STRATEGY = 'static';
+
+  const allOrders = getMixedExpirationOrders();
+  const longEnoughOrderCount = allOrders.length / 2; // by convention.
+
+  // Put all orders
+  allOrders.map(order => {
+    expect(ShelfOperator.putOrder(order)).toBeTruthy();
+  });
+
+  expect(ShelfOperator.getAllInventoryNumber())
+    .toEqual(allOrders.length);
+
+  setTimeout(() => {
+    // We have to "operate" on it to trigger clean up
+    expect(ShelfOperator.getAllInventoryNumber()).toEqual(allOrders.length);
+
+    ShelfOperator.cleanUpShelves();
+
+    expect(ShelfOperator.getAllInventoryNumber()).toEqual(longEnoughOrderCount);
+
+    done();
+  }, 1500); // in 1.5 seconds (> the life of soonExpiredOrders)
+});
+
+/**
+ * Returns orderData.lentgh soon expire orders and orderData.length long orders
+ */
+function getMixedExpirationOrders() {
   const soonExpiredOrders = ordersData.map((orderData, index) => {
     let newOrderData = Object.assign({}, orderData, {shelfLife: 0.1});
     return new Order(index, newOrderData);
@@ -78,20 +128,5 @@ test('Removing wasted orders will get rid of wasted orders', done => {
     return new Order(index+indexOffsite, newOrderData);
   });
 
-  const allOrders = soonExpiredOrders.concat(longEnoughOrders);
-  // Put all orders
-  allOrders.map(order => {
-    expect(ShelfOperator.putOrder(order)).toBeTruthy();
-  });
-
-  expect(ShelfOperator.getAllInventoryNumber())
-    .toEqual(allOrders.length);
-
-  setTimeout(() => {
-    ShelfOperator.cleanUpShelves();
-
-    expect(ShelfOperator.getAllInventoryNumber())
-      .toEqual(longEnoughOrders.length);
-    done();
-  }, 1500); // in 1.5 seconds (> the life of soonExpiredOrders)
-});
+  return soonExpiredOrders.concat(longEnoughOrders);
+}

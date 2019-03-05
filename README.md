@@ -25,7 +25,7 @@ npm start
 // Test the app
 npm test
 // See coverage
-npm coverage
+npm run coverage
 ```
 
 ### Options to start up

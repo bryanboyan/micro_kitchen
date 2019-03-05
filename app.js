@@ -25,21 +25,33 @@ function prompt(ready) {
       type: 'list',
       name: 'strategy',
       message: 'Pick a strategy to do order cleanup (default: timeout)',
-      choices: ['timeout', 'operate']
+      choices: ['timeout', 'operate'],
     },
     {
       type: 'input',
       name: 'poissonRate',
       message: 'Overwrite the poisson distribution rate? (default as 3.25)',
     },
+    {
+      type: 'list',
+      name: 'decayStrategy',
+      message: 'Choose strategy for order decay (default: static)',
+      choices: ['static', 'dynamic'],
+    },
     {type: 'input', name: 'ready', message: 'Ready to start?'},
-  ]).then(({strategy, poissonRate, _enter}) => {
+  ]).then(({
+    strategy,
+    poissonRate,
+    decayStrategy,
+    _enter,
+  }) => {
     process.env.STRATEGY = strategy === 'operate' ? strategy : 'timeout';
     if (poissonRate != '') {
       process.env.POISSON_RATE = new Number(poissonRate);
     }
+    console.log(decayStrategy);
 
-    ready();
+    // ready();
   });
 }
 

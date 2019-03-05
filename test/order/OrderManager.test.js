@@ -13,14 +13,16 @@ test('Dispatcher can be instantiated', () => {
   expect(manager.orders.length).toEqual(ordersData.length);
 });
 
-test('Orders can be handled with right index increase', () => {
+test('Orders can be handled correctly', () => {
+  process.env.STRATEGY = 'operate';
+
   const manager = new OrderManager(ordersData);
   const numOrders = ordersData.length;
   for (var i=0; i<numOrders; i++) {
     manager.handleOrder(new Order(i, ordersData[i]));
   }
-  // One for order expire the other for driver pick up
-  expect(setTimeout).toHaveBeenCalledTimes(numOrders * 2);
+
+  expect(setTimeout).toHaveBeenCalledTimes(numOrders);
 });
 
 test('Calling dispatching start will correctly call back', done => {
